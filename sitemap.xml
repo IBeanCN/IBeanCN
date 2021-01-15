@@ -88,6 +88,13 @@
   </url>
   
   <url>
+    <loc>https://github.ibean.top/tags/LocalDateTime/</loc>
+    <lastmod>2021-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://github.ibean.top/tags/jasypt/</loc>
     <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
@@ -96,13 +103,6 @@
   
   <url>
     <loc>https://github.ibean.top/tags/SpringBoot/</loc>
-    <lastmod>2021-01-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://github.ibean.top/tags/LocalDateTime/</loc>
     <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -125,14 +125,14 @@
   </url>
   
   <url>
-    <loc>https://github.ibean.top/categories/SpringBoot/</loc>
+    <loc>https://github.ibean.top/categories/MySQL/</loc>
     <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://github.ibean.top/categories/MySQL/</loc>
+    <loc>https://github.ibean.top/categories/SpringBoot/</loc>
     <lastmod>2021-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
