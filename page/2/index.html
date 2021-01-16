@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>阿豆的闲暇时光</title><meta name="author" content="IBean"><meta name="copyright" content="IBean"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta property="og:type" content="website">
+<meta property="og:title" content="阿豆的闲暇时光">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="阿豆的闲暇时光">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:author" content="IBean">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-01-16 17:19:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">阿豆的闲暇时光</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">阿豆的闲暇时光</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/03/01/20210116SpringBoot%EF%BC%8CJava%E4%BD%BF%E7%94%A8AOP%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82/" title="SpringBoot，Java使用AOP统一处理请求">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot，Java使用AOP统一处理请求"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/03/01/20210116SpringBoot%EF%BC%8CJava%E4%BD%BF%E7%94%A8AOP%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82/" title="SpringBoot，Java使用AOP统一处理请求">SpringBoot，Java使用AOP统一处理请求</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-03-01T09:08:52.000Z" title="发表于 2020-03-01 17:08:52">2020-03-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Spring/">Spring</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/Spring/SpringBoot/">SpringBoot</a></span></div><div class="content">AOP：面向切面编程；公共行为从业务逻辑分离进行统一处理；
+1. 添加依赖12345&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;&lt;/dependency&gt;
+2. new Aspect类IDE是idea的话，不是右键后的那个选项，是class添加注解和逻辑代码
+1234567891011@Aspect@Componentpublic class ***Aspect&#123;	@Before(&quot;execution()&quot;)//接触到业务代码之前处理	public void doBefore()&#123;	&#125;	@After(&quot;execution()&quot;)//接触到业务代码之后处理	public void doAfter()&#123;	&#125;&#125;
+execution()的使用参考博客 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/03/01/20210116Java%EF%BC%8CSpringBoot%E9%A1%B9%E7%9B%AE%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" title="Java，SpringBoot项目表单验证">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java，SpringBoot项目表单验证"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/03/01/20210116Java%EF%BC%8CSpringBoot%E9%A1%B9%E7%9B%AE%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" title="Java，SpringBoot项目表单验证">Java，SpringBoot项目表单验证</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-03-01T08:49:29.000Z" title="发表于 2020-03-01 16:49:29">2020-03-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/SpringBoot/">SpringBoot</a></span></div><div class="content">123//对象内部添加校验注解@Min(value=1,message=&quot;xxxx&quot;)public String key;
+
+
+
+column1
+column2
+column3
+
+
+
+content1
+content2
+content3
+
+
+@AssertFalse
+Boolean,boolean
+验证注解的元素值是false
+
+
+@AssertTrue
+Boolean,boolean
+验证注解的元素值是true
+
+
+@NotNull
+任意类型
+验证注解的元素值不是null
+
+
+@Null
+任意类型    验证注解的元素值是null
+
+
+
+@Min(value=值)
+BigDecimal，BigInteger, byte,short, int, long，等任何Number或CharSequence（存储的是数字）子类型
+验证注解的元素值大于等于@Min指定的value值
+
+
+@Max（value=值）
+和@Min要求一样
+验证注解的元素值小于等于@Max指定的value值
+
+
+@DecimalMin(value=值)
+和@Min要求一样
+验证注解的元素值大于等于
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/02/21/20210114%E8%BF%99%E9%87%8C%E6%98%AF%E9%98%BF%E8%B1%86%E7%9A%84%E5%B0%8F%E7%A9%BA%E9%97%B4/" title="这里是阿豆的小空间">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="这里是阿豆的小空间"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/21/20210114%E8%BF%99%E9%87%8C%E6%98%AF%E9%98%BF%E8%B1%86%E7%9A%84%E5%B0%8F%E7%A9%BA%E9%97%B4/" title="这里是阿豆的小空间">这里是阿豆的小空间</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-02-21T13:15:44.000Z" title="发表于 2020-02-21 21:15:44">2020-02-21</time></span></div><div class="content">IBean 源于Java Bean的概念 I am the bean~ 简化一下就成了IBean
+
+阿豆本身是做Java的，18年毕业入行至今，也在想要往大数据方面靠，所以博客主要的技术栈可能会涉及的比较多，兴趣点依旧在大数据，争取未来的时间可以转到大数据开发相关的岗位
+当然这里除了技术，可能后期也会上传一些生活相关的小记录~
+
+2020大事记
+
+目前已从省会城市回到家工作，一个美丽的沿海城市~
+2020年疫情期间辞职+找工作，进入了一家烟台的中小型公司，不过依旧做Java~
+最近考虑和朋友搞点东西，学以致用，代码没问题的情况下，后期可能考虑开源和一些定制化的开发，但愿这个事情不会被搁置或者放弃吧~
+针对3这个事情 有点点搁置 公司太忙导致回到家啥也不想干 抽空把博客迁移到Github上
+已经把博客改成hexo 部署到了github pages 和 又拍云
+
+
+希望未来有一天事业有成，女朋友可以变成我的妻子，我爱你~
+
+也祝各位小伙伴永不放弃，把从事计算机行业当作你的爱好一样去爱它，我们可是改变未来的一群人~
+
+不请之情，页面的ad最好可以帮我点一下哦，不点也不要被插件拦截就行，页面的 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/02/08/20210116%E5%A4%A7%E6%95%B0%E6%8D%AE-Hive%E7%AF%87-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" title="大数据-Hive篇-面试题总结">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大数据-Hive篇-面试题总结"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/08/20210116%E5%A4%A7%E6%95%B0%E6%8D%AE-Hive%E7%AF%87-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" title="大数据-Hive篇-面试题总结">大数据-Hive篇-面试题总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-02-08T09:54:43.000Z" title="发表于 2020-02-08 17:54:43">2020-02-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Hive/">Hive</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/Hive/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="content">题目来源 最全腾讯等BAT大数据面试99题 以下答案仅供参考，如有错误请指正
+1. hadoop中两个大表实现join的操作，简单描述？并没有抓到该题的关键，请大佬指教；关于Hive的Join *参考链接 Hive基础二（join原理和机制，join的几种类型，数据倾斜简单处理）*
+
+2. Hive中存放是什么？表（数据+元数据）。 存的是和hdfs的映射关系，hive是逻辑上的数据仓库，实际操作的都是hdfs上的文件，HQL就是用sql语法来写的mr程序。
+
+3. Hive与关系型数据库的关系？没有任何关系。Hive是为了方便数据查询减少MR程序的编写，是一次写多次读的操作，不能进行实时的CRUD操作。
+
+4. 讲一下数据库，SQl ，左外连接， 原理，实现？*参考链接 MySQL查询优化——连接以及连接原理*
+
+5. 大表和小表join？可以通过/* + streamtable(表) */指定大表，或通过 /* + mapjoin(表) */指定小表指定后会将小表数据放入内存更快的join；若不指定 join 默认将最后一个表作为大表；通常 每次写join时可将小表放左侧，大表放右 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/02/08/20210116%E5%A4%A7%E6%95%B0%E6%8D%AE-Spark%E7%AF%87-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" title="大数据-Spark篇-面试题总结">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大数据-Spark篇-面试题总结"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/08/20210116%E5%A4%A7%E6%95%B0%E6%8D%AE-Spark%E7%AF%87-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" title="大数据-Spark篇-面试题总结">大数据-Spark篇-面试题总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-02-08T09:52:35.000Z" title="发表于 2020-02-08 17:52:35">2020-02-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Spark/">Spark</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/Spark/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="content">题目来源 最全腾讯等BAT大数据面试99题 以下答案仅供参考，如有错误请指正
+1. Spark的Shuffle原理及调优？
+原理：SparkShuffle过程与MapReduce类似；DAG阶段，以Shuffle为界分为map stage和reduce stage，map阶段进行任务计算后下发到各自partition中，同时写入磁盘，该过程为shuffle write；reduce阶段读取map计算后各分区的值进一步计算，该过程为shuffle read；
+调优：
+尽量减少shuffle次数
+必要时主动shuffle，通常用于改变并行度，提高后续分布式运行速度
+合并Map端输出文件开启相关设置：conf.set(“spark.shuffle.consolidateFiles”,”  true”)
+调节map端内存缓冲区大小和reduce端内存缓冲区内存占比
+spark.shuffle.file.buffer，默认32k在map task处理的数据量比较大的情况下，而你的task的内存缓冲默认是比较小的，32kb。可能会造成多次的map端往磁盘文件的spill溢写操作，发生大量的磁盘IO ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/01/08/20210116Centos7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85Vim/" title="Centos7离线安装Vim">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos7离线安装Vim"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/01/08/20210116Centos7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85Vim/" title="Centos7离线安装Vim">Centos7离线安装Vim</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-01-08T02:01:28.000Z" title="发表于 2020-01-08 10:01:28">2020-01-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Centos7/">Centos7</a></span></div><div class="content">下载离线安装包vim-8.2.tar.bz2
+解压1bunzip2 vim-8.2.tar.bz2
+再解压1tar xvf vim-8.2.tar
+进入解压目录1cd vim82
+配置1./configure --disable-selinux --enable-cscope
+
+如果此处报错no terminal library foundchecking for tgetent()… configure: error: NOT FOUND!      You need to install a terminal library; for example ncurses.      Or specify the name of the library with –with-tlib.      点击下载ncurses
+rpm -ivh xxxxxxxx安装完成后重新执行该步骤
+编译安装1make &amp;&amp; make install</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/11/18/20210116%EF%BC%88%E8%BD%AC%EF%BC%89Kafka2-2-0%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="（转）Kafka2.2.0集群搭建">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="（转）Kafka2.2.0集群搭建"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/11/18/20210116%EF%BC%88%E8%BD%AC%EF%BC%89Kafka2-2-0%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="（转）Kafka2.2.0集群搭建">（转）Kafka2.2.0集群搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-18T13:10:24.000Z" title="发表于 2019-11-18 21:10:24">2019-11-18</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Kafka/">Kafka</a></span></div><div class="content">主要参考这两篇文章Kafka2.2.0集群搭建（1）Kafka2.2.0集群搭建（2）
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/03/08/20210116%E5%88%9D%E5%85%A5Storm%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" title="初入Storm开发遇到的问题">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="初入Storm开发遇到的问题"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/03/08/20210116%E5%88%9D%E5%85%A5Storm%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" title="初入Storm开发遇到的问题">初入Storm开发遇到的问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-03-08T06:59:37.000Z" title="发表于 2019-03-08 14:59:37">2019-03-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Storm/">Storm</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/Storm/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="content">new Fields是干啥的declare的时候，new Fields(“A”,”B”)emit的时候，new Value(“a”,”b”)declare的fields的size要和value的size相等否则会报错这个是对应的所以接收的时候tuple.getString(index)这个index就代表着ab的位置返回的tuple中获得的是这个地方的数据
+同时，可以通过getStringByField这个方法获得指定field的值
+Message ID这个又是干啥的这个值可填可不填当not null时，ack和fail的回调会执行，被storm监控，所以可以在这两个回调函数里记录状态写到日志里，这样排错的时候就能定位了当msgid为null时，可以理解为虽然任务执行了，但是这个事件丢失了，没有人知道他，他是个没身份证的人，不受到storm的监控，也就自然没法对他定位了
+开发遇到的报错问题 Local模式
+一点运行马上报这个错
+
+12345678910111213141516java.lang.NoClassDefFoundError: org&#x2F;apache&#x2F;sto ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/01/08/20210116Hive1-2-2%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88MariaDB%E7%89%88%EF%BC%89%E3%80%90%E5%A1%AB%E5%9D%91%E3%80%91/" title="Hive1.2.2环境搭建（MariaDB版）【填坑】">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hive1.2.2环境搭建（MariaDB版）【填坑】"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/01/08/20210116Hive1-2-2%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88MariaDB%E7%89%88%EF%BC%89%E3%80%90%E5%A1%AB%E5%9D%91%E3%80%91/" title="Hive1.2.2环境搭建（MariaDB版）【填坑】">Hive1.2.2环境搭建（MariaDB版）【填坑】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-01-08T14:27:20.000Z" title="发表于 2019-01-08 22:27:20">2019-01-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Hive/">Hive</a></span></div><div class="content">2019.1.23    填坑，点我鸭.2019.1.11    更新错误填坑，点我鸭.
+
+
+1.下载Hive下载具体参考官网；MariaDB安装参考百度附链接；centos 7 mariadb安装
+2. 解压Hive1.2.2并重命名为hive1.2.23. 配置文件修改1cd hive-1.2.2/conf
+（1）创建hive-site.xml1touch hive-site.xml
+（2）编辑hive-site.xml（心情好的时候重新整理一下这一步）123456789101112131415161718192021222324252627282930&lt;configuration&gt;    &lt;property&gt;        &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;       &lt;value&gt;jdbc:mysql://localhost:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;    &lt;/property& ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">IBean</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/01/16/20210116/CentOS%E5%88%87%E6%8D%A2Scala%E7%89%88%E6%9C%AC%E6%97%B6%E6%9C%AA%E5%8F%91%E7%94%9F%E5%8F%98%E5%8C%96/" title="CentOS切换Scala版本时未发生变化"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CentOS切换Scala版本时未发生变化"/></a><div class="content"><a class="title" href="/2021/01/16/20210116/CentOS%E5%88%87%E6%8D%A2Scala%E7%89%88%E6%9C%AC%E6%97%B6%E6%9C%AA%E5%8F%91%E7%94%9F%E5%8F%98%E5%8C%96/" title="CentOS切换Scala版本时未发生变化">CentOS切换Scala版本时未发生变化</a><time datetime="2021-01-16T09:18:34.000Z" title="发表于 2021-01-16 17:18:34">2021-01-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/08/23/20210115Terminal%E6%94%B9%E9%80%A0%E4%BB%8EPowershell%E5%BC%80%E5%A7%8B/" title="Terminal改造从Powershell开始"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Terminal改造从Powershell开始"/></a><div class="content"><a class="title" href="/2020/08/23/20210115Terminal%E6%94%B9%E9%80%A0%E4%BB%8EPowershell%E5%BC%80%E5%A7%8B/" title="Terminal改造从Powershell开始">Terminal改造从Powershell开始</a><time datetime="2020-08-23T14:49:50.000Z" title="发表于 2020-08-23 22:49:50">2020-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/08/22/20210114Docker%20Java%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="Docker Java 常用开发环境"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker Java 常用开发环境"/></a><div class="content"><a class="title" href="/2020/08/22/20210114Docker%20Java%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="Docker Java 常用开发环境">Docker Java 常用开发环境</a><time datetime="2020-08-22T08:30:44.000Z" title="发表于 2020-08-22 16:30:44">2020-08-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/08/11/20210114Redis%E9%80%9A%E8%BF%87ZSet%E5%AE%9E%E7%8E%B0%E9%99%90%E6%B5%81/" title="Redis通过ZSet实现限流"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis通过ZSet实现限流"/></a><div class="content"><a class="title" href="/2020/08/11/20210114Redis%E9%80%9A%E8%BF%87ZSet%E5%AE%9E%E7%8E%B0%E9%99%90%E6%B5%81/" title="Redis通过ZSet实现限流">Redis通过ZSet实现限流</a><time datetime="2020-08-11T13:24:04.000Z" title="发表于 2020-08-11 21:24:04">2020-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/07/18/20210114%E4%BD%BF%E7%94%A8LocalDateTime%E5%AF%BC%E8%87%B4%E5%85%A5%E5%BA%93%E6%97%B6%E6%97%B6%E9%97%B4%E8%A2%AB%E8%88%8D%E5%85%A5/" title="使用LocalDateTime导致入库时时间被舍入"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用LocalDateTime导致入库时时间被舍入"/></a><div class="content"><a class="title" href="/2020/07/18/20210114%E4%BD%BF%E7%94%A8LocalDateTime%E5%AF%BC%E8%87%B4%E5%85%A5%E5%BA%93%E6%97%B6%E6%97%B6%E9%97%B4%E8%A2%AB%E8%88%8D%E5%85%A5/" title="使用LocalDateTime导致入库时时间被舍入">使用LocalDateTime导致入库时时间被舍入</a><time datetime="2020-07-18T13:24:14.000Z" title="发表于 2020-07-18 21:24:14">2020-07-18</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Centos7/"><span class="card-category-list-name">Centos7</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Hive/"><span class="card-category-list-name">Hive</span><span class="card-category-list-count">2</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Hive/%E9%9D%A2%E8%AF%95/"><span class="card-category-list-name">面试</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Kafka/"><span class="card-category-list-name">Kafka</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MySQL/"><span class="card-category-list-name">MySQL</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Redis/"><span class="card-category-list-name">Redis</span><span class="card-category-list-count">1</span></a></li>
+            <li class="card-category-list-item more is-center"><a class="card-category-list-link-more" href="/categories/">
+                <span>查看更多</span><i class="fas fa-angle-right"></i></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AOP/" style="font-size: 1.1em; color: #999">AOP</a> <a href="/tags/Aop/" style="font-size: 1.1em; color: #999">Aop</a> <a href="/tags/BigData/" style="font-size: 1.5em; color: #99a9bf">BigData</a> <a href="/tags/Centos7/" style="font-size: 1.1em; color: #999">Centos7</a> <a href="/tags/Docker/" style="font-size: 1.23em; color: #999ea6">Docker</a> <a href="/tags/Hive/" style="font-size: 1.23em; color: #999ea6">Hive</a> <a href="/tags/Java/" style="font-size: 1.37em; color: #99a4b2">Java</a> <a href="/tags/Kafka/" style="font-size: 1.1em; color: #999">Kafka</a> <a href="/tags/LocalDateTime/" style="font-size: 1.1em; color: #999">LocalDateTime</a> <a href="/tags/Redis/" style="font-size: 1.1em; color: #999">Redis</a> <a href="/tags/Spark/" style="font-size: 1.1em; color: #999">Spark</a> <a href="/tags/Spring/" style="font-size: 1.1em; color: #999">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 1.5em; color: #99a9bf">SpringBoot</a> <a href="/tags/Storm/" style="font-size: 1.1em; color: #999">Storm</a> <a href="/tags/Terminal/" style="font-size: 1.1em; color: #999">Terminal</a> <a href="/tags/Validated/" style="font-size: 1.1em; color: #999">Validated</a> <a href="/tags/jasypt/" style="font-size: 1.1em; color: #999">jasypt</a> <a href="/tags/vim/" style="font-size: 1.1em; color: #999">vim</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.23em; color: #999ea6">面试</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/01/"><span class="card-archive-list-date">一月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/08/"><span class="card-archive-list-date">八月 2020</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">六月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/03/"><span class="card-archive-list-date">三月 2020</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/02/"><span class="card-archive-list-date">二月 2020</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/01/"><span class="card-archive-list-date">一月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/11/"><span class="card-archive-list-date">十一月 2019</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item more is-center"><a class="card-archive-list-link-more" href="/archives/">
+              <span>查看更多</span><i class="fas fa-angle-right"  ></i></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">19</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-01-16T09:19:23.630Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By IBean</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
