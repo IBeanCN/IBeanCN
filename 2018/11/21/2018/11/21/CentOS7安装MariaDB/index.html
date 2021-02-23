@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CentOS7安装MariaDB | Hexo</title><meta name="keywords" content="CentOS7,MariaDB"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="安装Maria DB 1yum -y install mariadb mariadb-server 启动Maria DB 1systemctl start mariadb 设置开机启动 1systemctl enable mariadb 初始化设置 1mysql_secure_installation 运行后会提示 Enter current password for root (enter fo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS7安装MariaDB">
+<meta property="og:url" content="http://example.com/2018/11/21/2018/11/21/CentOS7%E5%AE%89%E8%A3%85MariaDB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装Maria DB 1yum -y install mariadb mariadb-server 启动Maria DB 1systemctl start mariadb 设置开机启动 1systemctl enable mariadb 初始化设置 1mysql_secure_installation 运行后会提示 Enter current password for root (enter fo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.ibean.top/blog/portrait-of-dolphin-in-ocean.jpg">
+<meta property="article:published_time" content="2018-11-21T08:04:04.000Z">
+<meta property="article:modified_time" content="2021-01-18T07:48:48.978Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="CentOS7">
+<meta property="article:tag" content="MariaDB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.ibean.top/blog/portrait-of-dolphin-in-ocean.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2018/11/21/2018/11/21/CentOS7%E5%AE%89%E8%A3%85MariaDB/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="iGdG9L08jtCBvaea"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: '2134051473',
+  enable_page_level_ads: 'true'
+});</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f8220de43d396e321dda377ee0318c7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: John Doe","link":"Link: ","source":"Source: Hexo","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-01-18 15:48:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.ibean.top/uplaod/9c70c64b4ec80218f5cbd175b5277fcf.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">30</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">33</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">22</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.ibean.top/blog/portrait-of-dolphin-in-ocean.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CentOS7安装MariaDB</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2018-11-21T08:04:04.000Z" title="Created 2018-11-21 16:04:04">2018-11-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-01-18T07:48:48.978Z" title="Updated 2021-01-18 15:48:48">2021-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/MariaDB/">MariaDB</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2018/11/21/2018/11/21/CentOS7%E5%AE%89%E8%A3%85MariaDB/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>安装Maria DB</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mariadb mariadb-server</span><br></pre></td></tr></table></figure>
+<p><strong>启动Maria DB</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mariadb</span><br></pre></td></tr></table></figure>
+<p><strong>设置开机启动</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable mariadb</span><br></pre></td></tr></table></figure>
+<p><strong>初始化设置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+<p><strong>运行后会提示</strong></p>
+<pre><code>Enter current password for root (enter for none):   回车确认
+Set root password? [Y/n] 回车确认
+New password: 新密码
+Re-enter new password: 再输一次</code></pre>
+<p><strong>之后的所有选项回车到底完成安装<br>验证是否成功安装</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p><strong>输入刚才的密码回车，显示出下面的就成功了</strong><br><img src="https://cdn.ibean.top/blog/2018112115562978.png!o"></p>
+<p><strong>因为在初始化的时候设置了root用户不能远程访问，所以需要设置下远程访问的新用户</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#x27;改成你的用户名&#x27;@&#x27;%&#x27;IDENTIFIED BY &#x27;改成你的密码&#x27; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
+<p><strong>然后刷新一下</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<p>用连数据库的工具输入<strong>ip，用户名，和密码</strong>就可以了，如果连不上根据错误百度吧。<br>其中可能的原因是因为<strong>防火墙</strong>，<strong>关掉</strong>或者<strong>设置防火墙的端口</strong><br>这里<strong>以关掉防火墙为例</strong>：<br>如果还在上述界面，exit退出MySQL<br><strong>CentOS7</strong>默认的防火墙组件为<strong>firewalld</strong>所以执行如下命令（这里不讨论<strong>iptables</strong>的问题）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br><span class="line">systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2018/11/21/2018/11/21/CentOS7%E5%AE%89%E8%A3%85MariaDB/">http://example.com/2018/11/21/2018/11/21/CentOS7安装MariaDB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CentOS7/">CentOS7</a><a class="post-meta__tags" href="/tags/MariaDB/">MariaDB</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.ibean.top/blog/portrait-of-dolphin-in-ocean.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2018/11/22/2018/11/22/Hbase%201.3.1%20%E6%90%AD%E5%BB%BA%E5%AE%89%E8%A3%85/"><img class="prev-cover" src="https://cdn.ibean.top/blog/picture/1612943537190.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Hbase 1.3.1 搭建安装</div></div></a></div><div class="next-post pull-right"><a href="/2018/11/20/2018/11/20/HDFS%E7%9B%B8%E5%85%B3/"><img class="next-cover" src="https://cdn.ibean.top/blog/picture/1612943537190.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">HDFS相关</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.ibean.top/uplaod/9c70c64b4ec80218f5cbd175b5277fcf.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">30</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">33</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">22</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/IBeanCN"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/IBeanCN" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:IBeanCN@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/06/2021/02/06/MongoDB%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8/" title="MongoDB自定义类型转换器"><img src="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MongoDB自定义类型转换器"/></a><div class="content"><a class="title" href="/2021/02/06/2021/02/06/MongoDB%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8/" title="MongoDB自定义类型转换器">MongoDB自定义类型转换器</a><time datetime="2021-02-06T09:18:48.000Z" title="Created 2021-02-06 17:18:48">2021-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/08/23/2020/08/23/20210115Terminal%E6%94%B9%E9%80%A0%E4%BB%8EPowershell%E5%BC%80%E5%A7%8B/" title="Terminal改造从Powershell开始"><img src="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Terminal改造从Powershell开始"/></a><div class="content"><a class="title" href="/2020/08/23/2020/08/23/20210115Terminal%E6%94%B9%E9%80%A0%E4%BB%8EPowershell%E5%BC%80%E5%A7%8B/" title="Terminal改造从Powershell开始">Terminal改造从Powershell开始</a><time datetime="2020-08-23T14:49:50.000Z" title="Created 2020-08-23 22:49:50">2020-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/08/22/2020/08/22/20210114Docker%20Java%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="Docker Java 常用开发环境"><img src="https://cdn.ibean.top/blog/picture/1612943537190.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker Java 常用开发环境"/></a><div class="content"><a class="title" href="/2020/08/22/2020/08/22/20210114Docker%20Java%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="Docker Java 常用开发环境">Docker Java 常用开发环境</a><time datetime="2020-08-22T08:30:44.000Z" title="Created 2020-08-22 16:30:44">2020-08-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/08/11/2020/08/11/20210114Redis%E9%80%9A%E8%BF%87ZSet%E5%AE%9E%E7%8E%B0%E9%99%90%E6%B5%81/" title="Redis通过ZSet实现限流"><img src="https://cdn.ibean.top/blog/landscape-water-lake-sea.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis通过ZSet实现限流"/></a><div class="content"><a class="title" href="/2020/08/11/2020/08/11/20210114Redis%E9%80%9A%E8%BF%87ZSet%E5%AE%9E%E7%8E%B0%E9%99%90%E6%B5%81/" title="Redis通过ZSet实现限流">Redis通过ZSet实现限流</a><time datetime="2020-08-11T13:24:04.000Z" title="Created 2020-08-11 21:24:04">2020-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/07/18/2020/07/18/20210114%E4%BD%BF%E7%94%A8LocalDateTime%E5%AF%BC%E8%87%B4%E5%85%A5%E5%BA%93%E6%97%B6%E6%97%B6%E9%97%B4%E8%A2%AB%E8%88%8D%E5%85%A5/" title="使用LocalDateTime导致入库时时间被舍入"><img src="https://cdn.ibean.top/blog/picture/1612943537190.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用LocalDateTime导致入库时时间被舍入"/></a><div class="content"><a class="title" href="/2020/07/18/2020/07/18/20210114%E4%BD%BF%E7%94%A8LocalDateTime%E5%AF%BC%E8%87%B4%E5%85%A5%E5%BA%93%E6%97%B6%E6%97%B6%E9%97%B4%E8%A2%AB%E8%88%8D%E5%85%A5/" title="使用LocalDateTime导致入库时时间被舍入">使用LocalDateTime导致入库时时间被舍入</a><time datetime="2020-07-18T13:24:14.000Z" title="Created 2020-07-18 21:24:14">2020-07-18</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.ibean.top/blog/portrait-of-dolphin-in-ocean.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2021 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="https://cdn.ibean.top/blog/%E5%8F%88%E6%8B%8D%E4%BA%91_logo5.png" style="height:70px;"/></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="Increase font size"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="Decrease font size"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: '3cf5e23d441d57d9d945',
+      clientSecret: '0dd8ea54ed7b23a60cc1f6bb9f177412c2fe5faf',
+      repo: 'IBeanCN',
+      owner: 'IBeanCN',
+      admin: ['IBeanCN'],
+      id: '41bd4e140419dc7ba62590cc6d7e0332',
+      language: 'zh-CN',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

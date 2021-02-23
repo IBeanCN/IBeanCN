@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java，SpringBoot项目表单验证 | Hexo</title><meta name="keywords" content="SpringBoot,Validated"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="123&#x2F;&#x2F;对象内部添加校验注解@Min(value&#x3D;1,message&#x3D;&quot;xxxx&quot;)public String key;    column1 column2 column3    content1 content2 content3   @AssertFalse Boolean,boolean 验证注解的元素值是false   @AssertTrue Boolean,boo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java，SpringBoot项目表单验证">
+<meta property="og:url" content="http://example.com/2020/03/01/2020/03/01/20210116Java%EF%BC%8CSpringBoot%E9%A1%B9%E7%9B%AE%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="123&#x2F;&#x2F;对象内部添加校验注解@Min(value&#x3D;1,message&#x3D;&quot;xxxx&quot;)public String key;    column1 column2 column3    content1 content2 content3   @AssertFalse Boolean,boolean 验证注解的元素值是false   @AssertTrue Boolean,boo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.ibean.top/blog/landscape-water-lake-sea.jpg">
+<meta property="article:published_time" content="2020-03-01T08:49:29.000Z">
+<meta property="article:modified_time" content="2021-01-18T07:48:48.988Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="Validated">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.ibean.top/blog/landscape-water-lake-sea.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/03/01/2020/03/01/20210116Java%EF%BC%8CSpringBoot%E9%A1%B9%E7%9B%AE%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="iGdG9L08jtCBvaea"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: '2134051473',
+  enable_page_level_ads: 'true'
+});</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f8220de43d396e321dda377ee0318c7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: John Doe","link":"Link: ","source":"Source: Hexo","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-01-18 15:48:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.ibean.top/uplaod/9c70c64b4ec80218f5cbd175b5277fcf.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">30</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">33</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">22</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.ibean.top/blog/landscape-water-lake-sea.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Java，SpringBoot项目表单验证</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-03-01T08:49:29.000Z" title="Created 2020-03-01 16:49:29">2020-03-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-01-18T07:48:48.988Z" title="Updated 2021-01-18 15:48:48">2021-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SpringBoot/">SpringBoot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2020/03/01/2020/03/01/20210116Java%EF%BC%8CSpringBoot%E9%A1%B9%E7%9B%AE%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象内部添加校验注解</span></span><br><span class="line"><span class="meta">@Min(value=1,message=&quot;xxxx&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String key;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>column1</th>
+<th>column2</th>
+<th>column3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>content1</td>
+<td>content2</td>
+<td>content3</td>
+</tr>
+<tr>
+<td>@AssertFalse</td>
+<td>Boolean,boolean</td>
+<td>验证注解的元素值是false</td>
+</tr>
+<tr>
+<td>@AssertTrue</td>
+<td>Boolean,boolean</td>
+<td>验证注解的元素值是true</td>
+</tr>
+<tr>
+<td>@NotNull</td>
+<td>任意类型</td>
+<td>验证注解的元素值不是null</td>
+</tr>
+<tr>
+<td>@Null</td>
+<td>任意类型    验证注解的元素值是null</td>
+<td></td>
+</tr>
+<tr>
+<td>@Min(value=值)</td>
+<td>BigDecimal，BigInteger, byte,short, int, long，等任何Number或CharSequence（存储的是数字）子类型</td>
+<td>验证注解的元素值大于等于@Min指定的value值</td>
+</tr>
+<tr>
+<td>@Max（value=值）</td>
+<td>和@Min要求一样</td>
+<td>验证注解的元素值小于等于@Max指定的value值</td>
+</tr>
+<tr>
+<td>@DecimalMin(value=值)</td>
+<td>和@Min要求一样</td>
+<td>验证注解的元素值大于等于</td>
+</tr>
+<tr>
+<td>@ DecimalMin指定的value值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@DecimalMax(value=值)</td>
+<td>和@Min要求一样</td>
+<td>验证注解的元素值小于等于@ DecimalMax指定的value值</td>
+</tr>
+<tr>
+<td>@Digits(integer=整数位数, fraction=小数位数)</td>
+<td>和@Min要求一样</td>
+<td>验证注解的元素值的整数位数和小数位数上限</td>
+</tr>
+<tr>
+<td>@Size(min=下限, max=上限)</td>
+<td>字符串、Collection、Map、数组等</td>
+<td>验证注解的元素值的在min和max（包含）指定区间之内，如字符长度、集合大小</td>
+</tr>
+<tr>
+<td>@Past</td>
+<td>java.util.Date,java.util.Calendar;Joda Time类库的日期类型</td>
+<td>验证注解的元素值（日期类型）比当前时间早</td>
+</tr>
+<tr>
+<td>@Future</td>
+<td>与@Past要求一样</td>
+<td>验证注解的元素值（日期类型）比当前时间晚</td>
+</tr>
+<tr>
+<td>@NotBlank</td>
+<td>CharSequence子类型</td>
+<td>验证注解的元素值不为空（不为null、去除首位空格后长度为0），不同于@NotEmpty，@NotBlank只应用于字符串且在比较时会去除字符串的首位空格</td>
+</tr>
+<tr>
+<td>@Length(min=下限, max=上限)</td>
+<td>CharSequence子类型</td>
+<td>验证注解的元素值长度在min和max区间内</td>
+</tr>
+<tr>
+<td>@NotEmpty</td>
+<td>CharSequence子类型、Collection、Map、数组</td>
+<td>验证注解的元素值不为null且不为空（字符串长度不为0、集合大小不为0）</td>
+</tr>
+<tr>
+<td>@Range(min=最小值, max=最大值)</td>
+<td>BigDecimal,BigInteger,CharSequence, byte, short, int, long等原子类型和包装类型</td>
+<td>验证注解的元素值在最小值和最大值之间</td>
+</tr>
+<tr>
+<td>@Email(regexp=正则表达式,flag=标志的模式)</td>
+<td>CharSequence子类型（如String）</td>
+<td>验证注解的元素值是Email，也可以通过regexp和flag指定自定义的email格式</td>
+</tr>
+<tr>
+<td>@Pattern(regexp=正则表达式,flag=标志的模式)</td>
+<td>String，任何CharSequence的子类型</td>
+<td>验证注解的元素值与指定的正则表达式匹配</td>
+</tr>
+<tr>
+<td>@Valid</td>
+<td>任何非原子类型</td>
+<td>指定递归验证关联的对象；如用户对象中有个地址对象属性，如果想在验证用户对象时一起验证地址对象的话，在地址对象上加@Valid注解即可级联验证</td>
+</tr>
+</tbody></table>
+<p>表格参考链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wjh123/p/8745473.html">常用注解</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用@Valid修饰待校验的对象</span></span><br><span class="line"><span class="comment">//Bindresult result获取结果</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">valid</span><span class="params">(<span class="meta">@Valid</span> Entity entity,Bindresult result)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(result.hasErrors())&#123;</span><br><span class="line">		<span class="comment">//通过该方法获取默认的错误提示值</span></span><br><span class="line">		System.out.println(result.getFieldError().getDefaultMessage())</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2020/03/01/2020/03/01/20210116Java%EF%BC%8CSpringBoot%E9%A1%B9%E7%9B%AE%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/">http://example.com/2020/03/01/2020/03/01/20210116Java，SpringBoot项目表单验证/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SpringBoot/">SpringBoot</a><a class="post-meta__tags" href="/tags/Validated/">Validated</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.ibean.top/blog/landscape-water-lake-sea.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/03/01/2020/03/01/20210116SpringBoot%EF%BC%8CJava%E4%BD%BF%E7%94%A8AOP%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82/"><img class="prev-cover" src="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">SpringBoot，Java使用AOP统一处理请求</div></div></a></div><div class="next-post pull-right"><a href="/2020/02/08/2020/02/08/20210116%E5%A4%A7%E6%95%B0%E6%8D%AE-Hive%E7%AF%87-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/"><img class="next-cover" src="https://cdn.ibean.top/blog/picture/1612943537191.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">大数据-Hive篇-面试题总结</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/03/01/2020/03/01/20210115SpringBoot，java统一异常处理/" title="SpringBoot，java统一异常处理"><img class="cover" src="https://cdn.ibean.top/blog/portrait-of-dolphin-in-ocean.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-01</div><div class="title">SpringBoot，java统一异常处理</div></div></a></div><div><a href="/2020/03/01/2020/03/01/20210116SpringBoot，Java使用AOP统一处理请求/" title="SpringBoot，Java使用AOP统一处理请求"><img class="cover" src="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-01</div><div class="title">SpringBoot，Java使用AOP统一处理请求</div></div></a></div><div><a href="/2020/06/13/2020/06/13/20210114关于升级jasypt引发的SpringBoot无法启动/" title="关于升级jasypt引发的SpringBoot无法启动"><img class="cover" src="https://cdn.ibean.top/blog/picture/1612943537191.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-13</div><div class="title">关于升级jasypt引发的SpringBoot无法启动</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.ibean.top/uplaod/9c70c64b4ec80218f5cbd175b5277fcf.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">30</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">33</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">22</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/IBeanCN"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/IBeanCN" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:IBeanCN@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/06/2021/02/06/MongoDB%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8/" title="MongoDB自定义类型转换器"><img src="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MongoDB自定义类型转换器"/></a><div class="content"><a class="title" href="/2021/02/06/2021/02/06/MongoDB%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8/" title="MongoDB自定义类型转换器">MongoDB自定义类型转换器</a><time datetime="2021-02-06T09:18:48.000Z" title="Created 2021-02-06 17:18:48">2021-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/08/23/2020/08/23/20210115Terminal%E6%94%B9%E9%80%A0%E4%BB%8EPowershell%E5%BC%80%E5%A7%8B/" title="Terminal改造从Powershell开始"><img src="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Terminal改造从Powershell开始"/></a><div class="content"><a class="title" href="/2020/08/23/2020/08/23/20210115Terminal%E6%94%B9%E9%80%A0%E4%BB%8EPowershell%E5%BC%80%E5%A7%8B/" title="Terminal改造从Powershell开始">Terminal改造从Powershell开始</a><time datetime="2020-08-23T14:49:50.000Z" title="Created 2020-08-23 22:49:50">2020-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/08/22/2020/08/22/20210114Docker%20Java%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="Docker Java 常用开发环境"><img src="https://cdn.ibean.top/blog/picture/1612943537190.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker Java 常用开发环境"/></a><div class="content"><a class="title" href="/2020/08/22/2020/08/22/20210114Docker%20Java%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="Docker Java 常用开发环境">Docker Java 常用开发环境</a><time datetime="2020-08-22T08:30:44.000Z" title="Created 2020-08-22 16:30:44">2020-08-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/08/11/2020/08/11/20210114Redis%E9%80%9A%E8%BF%87ZSet%E5%AE%9E%E7%8E%B0%E9%99%90%E6%B5%81/" title="Redis通过ZSet实现限流"><img src="https://cdn.ibean.top/blog/landscape-water-lake-sea.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis通过ZSet实现限流"/></a><div class="content"><a class="title" href="/2020/08/11/2020/08/11/20210114Redis%E9%80%9A%E8%BF%87ZSet%E5%AE%9E%E7%8E%B0%E9%99%90%E6%B5%81/" title="Redis通过ZSet实现限流">Redis通过ZSet实现限流</a><time datetime="2020-08-11T13:24:04.000Z" title="Created 2020-08-11 21:24:04">2020-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/07/18/2020/07/18/20210114%E4%BD%BF%E7%94%A8LocalDateTime%E5%AF%BC%E8%87%B4%E5%85%A5%E5%BA%93%E6%97%B6%E6%97%B6%E9%97%B4%E8%A2%AB%E8%88%8D%E5%85%A5/" title="使用LocalDateTime导致入库时时间被舍入"><img src="https://cdn.ibean.top/blog/picture/1612943537190.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用LocalDateTime导致入库时时间被舍入"/></a><div class="content"><a class="title" href="/2020/07/18/2020/07/18/20210114%E4%BD%BF%E7%94%A8LocalDateTime%E5%AF%BC%E8%87%B4%E5%85%A5%E5%BA%93%E6%97%B6%E6%97%B6%E9%97%B4%E8%A2%AB%E8%88%8D%E5%85%A5/" title="使用LocalDateTime导致入库时时间被舍入">使用LocalDateTime导致入库时时间被舍入</a><time datetime="2020-07-18T13:24:14.000Z" title="Created 2020-07-18 21:24:14">2020-07-18</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.ibean.top/blog/landscape-water-lake-sea.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2021 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="https://cdn.ibean.top/blog/%E5%8F%88%E6%8B%8D%E4%BA%91_logo5.png" style="height:70px;"/></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="Increase font size"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="Decrease font size"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: '3cf5e23d441d57d9d945',
+      clientSecret: '0dd8ea54ed7b23a60cc1f6bb9f177412c2fe5faf',
+      repo: 'IBeanCN',
+      owner: 'IBeanCN',
+      admin: ['IBeanCN'],
+      id: 'ca99188121a26acdad57472dbd2ae5fe',
+      language: 'zh-CN',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
