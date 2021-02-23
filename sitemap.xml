@@ -375,14 +375,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/Centos/</loc>
-    <lastmod>2021-02-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/Kafka/</loc>
+    <loc>http://example.com/tags/MongoDB/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -480,7 +473,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/MongoDB/</loc>
+    <loc>http://example.com/tags/Centos/</loc>
+    <lastmod>2021-02-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/Kafka/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -573,14 +573,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/Scala/</loc>
-    <lastmod>2021-02-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/categories/Kafka/</loc>
+    <loc>http://example.com/categories/MongoDB/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -643,7 +636,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/MongoDB/</loc>
+    <loc>http://example.com/categories/Scala/</loc>
+    <lastmod>2021-02-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/Kafka/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
