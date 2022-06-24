@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: 
+Disallow: /about/
+Disallow: /link/
+Sitemap: https://www.ibean.top/baidusitemap.xml

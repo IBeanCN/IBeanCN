@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>大数据-Spark篇-面试题总结 | 阿豆的闲暇时光</title><meta name="keywords" content="BigData,面试,Spark"><meta name="author" content="IBean"><meta name="copyright" content="IBean"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="题目来源 最全腾讯等BAT大数据面试99题 以下答案仅供参考，如有错误请指正 1. Spark的Shuffle原理及调优？ 原理：SparkShuffle过程与MapReduce类似；DAG阶段，以Shuffle为界分为map stage和reduce stage，map阶段进行任务计算后下发到各自partition中，同时写入磁盘，该过程为shuffle write；reduce阶段读取map计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据-Spark篇-面试题总结">
+<meta property="og:url" content="https://www.ibean.top/posts/202002081745903.html">
+<meta property="og:site_name" content="阿豆的闲暇时光">
+<meta property="og:description" content="题目来源 最全腾讯等BAT大数据面试99题 以下答案仅供参考，如有错误请指正 1. Spark的Shuffle原理及调优？ 原理：SparkShuffle过程与MapReduce类似；DAG阶段，以Shuffle为界分为map stage和reduce stage，map阶段进行任务计算后下发到各自partition中，同时写入磁盘，该过程为shuffle write；reduce阶段读取map计">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg">
+<meta property="article:published_time" content="2020-02-08T09:52:35.000Z">
+<meta property="article:modified_time" content="2022-06-24T01:19:11.335Z">
+<meta property="article:author" content="IBean">
+<meta property="article:tag" content="BigData">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.ibean.top/posts/202002081745903"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-5097109782941887',
+  enable_page_level_ads: 'true'
+});</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6f8220de43d396e321dda377ee0318c7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: IBean","link":"链接: ","source":"来源: 阿豆的闲暇时光","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '大数据-Spark篇-面试题总结',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-24 09:19:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.ibean.top/uplaod/9c70c64b4ec80218f5cbd175b5277fcf.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">36</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">阿豆的闲暇时光</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">大数据-Spark篇-面试题总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-02-08T09:52:35.000Z" title="发表于 2020-02-08 17:52:35">2020-02-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-06-24T01:19:11.335Z" title="更新于 2022-06-24 09:19:11">2022-06-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Spark/">Spark</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="大数据-Spark篇-面试题总结"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/posts/202002081745903.html#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>题目来源</strong> <a target="_blank" rel="noopener" href="https://www.xuehua.us/2018/08/23/%E6%9C%80%E5%85%A8%E8%85%BE%E8%AE%AF%E7%AD%89bat%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%9D%A2%E8%AF%9599%E9%A2%98%EF%BC%9Ahadoop%E3%80%81java%E3%80%81spark%E3%80%81%E6%9C%BA%E5%99%A8%E7%AE%97%E6%B3%95%E7%AD%89/">最全腾讯等BAT大数据面试99题</a> <strong>以下答案仅供参考，如有错误请指正</strong></p>
+<h4 id="1-Spark的Shuffle原理及调优？"><a href="#1-Spark的Shuffle原理及调优？" class="headerlink" title="1. Spark的Shuffle原理及调优？"></a><strong>1. Spark的Shuffle原理及调优？</strong></h4><ul>
+<li><strong>原理</strong>：<br>SparkShuffle过程与MapReduce类似；DAG阶段，以Shuffle为界分为map stage和reduce stage，map阶段进行任务计算后下发到各自partition中，同时写入磁盘，该过程为shuffle write；reduce阶段读取map计算后各分区的值进一步计算，该过程为shuffle read；</li>
+<li><strong>调优：</strong><ol>
+<li>尽量减少shuffle次数</li>
+<li>必要时主动shuffle，通常用于改变并行度，提高后续分布式运行速度</li>
+<li>合并Map端输出文件<br>开启相关设置：<code>conf.set(“spark.shuffle.consolidateFiles”,”  true”)</code></li>
+<li>调节map端内存缓冲区大小和reduce端内存缓冲区内存占比<ul>
+<li><code>spark.shuffle.file.buffer</code>，默认32k<br>在map task处理的数据量比较大的情况下，而你的task的内存缓冲默认是比较小的，32kb。可能会造成多次的map端往磁盘文件的spill溢写操作，发生大量的磁盘IO，从而降低性能。<br>调优原则：<br><code>spark.shuffle.file.buffer</code>，每次扩大一倍，然后看看效果，64，128；</li>
+<li><code>spark.shuffle.memoryFraction</code>，0.2<br>reduce端聚合内存，占比。默认是0.2。如果数据量比较大，reduce task拉取过来的数据很多，那么就会频繁发生reduce端聚合内存不够用，频繁发生spill操作，溢写到磁盘上去。而且最要命的是，磁盘上溢写的数据量越大，后面在进行聚合操作的时候，很可能会多次读取磁盘中的数据，进行聚合。<br>调优原则：<br><code>spark.shuffle.memoryFraction</code>，每次提高0.1，看看效果。</li>
+</ul>
+</li>
+<li>SortShuffle代替HashShuffle，避免创建多分磁盘文件（Spark2.0之后的版本官方仅保留了SortShuffle）</li>
+</ol>
+</li>
+</ul>
+<p>*<strong>参考连接：</strong><a target="_blank" rel="noopener" href="http://sharkdtu.com/posts/spark-shuffle.html">Spark Shuffle原理及相关调优</a>*</p>
+<hr>
+<h4 id="2-hadoop和spark使用场景？"><a href="#2-hadoop和spark使用场景？" class="headerlink" title="2. hadoop和spark使用场景？"></a><strong>2. hadoop和spark使用场景？</strong></h4><ul>
+<li><strong>Hadoop</strong><br>离线大数据量批量计算，实时要求性低场景，大数据量存储，日志处理，个性化广告推荐</li>
+<li><strong>Spark</strong><br>内存分布式计算框架，伪实时计算，微批计算达到实时，产品实时推荐</li>
+</ul>
+<hr>
+<h4 id="3-spark如何保证宕机迅速恢复"><a href="#3-spark如何保证宕机迅速恢复" class="headerlink" title="3. spark如何保证宕机迅速恢复?"></a><strong>3. spark如何保证宕机迅速恢复?</strong></h4><ul>
+<li>适当增加Spark的StandBy Master；</li>
+<li>编写脚本定期给Master发心跳，若宕机则进行重启；</li>
+</ul>
+<hr>
+<h4 id="4-hadoop和spark的相同点和不同点？"><a href="#4-hadoop和spark的相同点和不同点？" class="headerlink" title="4. hadoop和spark的相同点和不同点？"></a><strong>4. hadoop和spark的相同点和不同点？</strong></h4><ul>
+<li><p><strong>Hadoop</strong><br>Hadoop的MR为多进程模型，系统稳定性优于Spark，但MR只有Map和Reduce两个阶段，导致表达能力欠缺，操作仅能在这两个阶段完成；同时读写HDFS时会产生大量磁盘IO操作；Hadoop适合于大数据量批量的或者高延迟的离线数据计算；</p>
+</li>
+<li><p><strong>Spark</strong><br>Spark为基于内存的多线程模型，系统稳定性略差，但是计算速度优于Hadoop，同时因为Spark基于内存进行计算，在不对系统进行调优的情况下很容易出现OOM等系统问题，导致任务结束无法继续；提供丰富的算子转换操作；使数据处理不单单拘泥于Map和Reduce，计算模型更加灵活；Spark适合低延迟内存密集型的数据计算；</p>
+</li>
+</ul>
+<hr>
+<h4 id="5-RDD持久化原理？"><a href="#5-RDD持久化原理？" class="headerlink" title="5. RDD持久化原理？"></a><strong>5. RDD持久化原理？</strong></h4><p>通过调用cache()和persist()方法将计算后的数据持久化到内存中；<br>其中cache()的默认实现即为persist(MEMORY_ONLY)；<br>persist()有可选项：</p>
+<ul>
+<li><code>MEMORY_ONLY</code>：仅存于内存，无法存储的partition会被重新计算；</li>
+<li><code>MEMORY_AND_DISK</code>：存于内存和磁盘，无法存储的partition会被写入磁盘，需要时从磁盘读取</li>
+<li><code>MEMORY_ONLY_SER</code>：仅存于内存，但会序列化；序列化减少内存开销，但取用时反序列化会导致CPU占用过高</li>
+<li><code>MEMORY_AND_DISK_SER</code>：同 <code>MEMORY_AND_DISK</code>，但会被序列化</li>
+<li><code>DISK_ONLY</code>：仅存于磁盘；</li>
+<li><code>MEMORY_ONLY_2/MEMERY_AND_DISK_2</code>：尾部加2表示会进行备份，防止数据丢失</li>
+</ul>
+<hr>
+<h4 id="6-checkpoint检查点机制？"><a href="#6-checkpoint检查点机制？" class="headerlink" title="6. checkpoint检查点机制？"></a><strong>6. checkpoint检查点机制？</strong></h4><p>SparkStreaming中的容错保证机制，保证程序出错时，仍可以从检查点恢复，保证数据高可用，同时可以减少回溯时间尽快重新开始计算</p>
+<hr>
+<h4 id="7-checkpoint和持久化机制的区别？"><a href="#7-checkpoint和持久化机制的区别？" class="headerlink" title="7. checkpoint和持久化机制的区别？"></a><strong>7. checkpoint和持久化机制的区别？</strong></h4><p>持久化是将数据保存在磁盘中，RDD的lineage仍旧保持不变，但持久化更容易丢数据，节点故障会导致数据从磁盘和内存中消失；检查点机制会将数据保存到高可用的文件系统中，与此同时lineage发生改变，检查点之前的lineage消失，只有当前点的状态；</p>
+<hr>
+<h4 id="8-Spark-Streaming和Storm有何区别？"><a href="#8-Spark-Streaming和Storm有何区别？" class="headerlink" title="8. Spark Streaming和Storm有何区别？"></a><strong>8. Spark Streaming和Storm有何区别？</strong></h4><ul>
+<li>SparkStreaming 秒级实时计算；RDD 本质是小批量的计算达到实时；但也因此吞吐量高于Storm</li>
+<li>Storm 毫秒级实时计算；数据收到即处理；可以实时调整并行度；<br>所以：对实时性要求高或者数据量存在不稳定的情况下可选Storm，峰值动态调整并行度；对实时性要求一般可选SparkStreaming</li>
+</ul>
+<hr>
+<h4 id="9-RDD机制？"><a href="#9-RDD机制？" class="headerlink" title="9. RDD机制？"></a><strong>9. RDD机制？</strong></h4><p>RDD弹性分布式数据集，一种数据结构，所有算子基于RDD执行；RDD具有很好的容错性，当节点错误partition数据丢失，可通过lineage的关系回溯重新计算partition的值；RDD的弹性体现在于RDD上自动进行内存和磁盘之间权衡和切换的机制。</p>
+<hr>
+<h4 id="10-Spark-streaming以及基本工作原理？"><a href="#10-Spark-streaming以及基本工作原理？" class="headerlink" title="10. Spark streaming以及基本工作原理？"></a><strong>10. Spark streaming以及基本工作原理？</strong></h4><p>SparkStreaming是一个秒级实时的，高吞吐量，利用多种算子和转换完成数据处理的流失批处理框架；<br>streaming接收数据后，将数据划分为一个个的batch交给spark引擎处理，处理后汇总成一个数据流，其中数据依然是一个个batch组成的；</p>
+<hr>
+<h4 id="11-DStream以及基本工作原理？"><a href="#11-DStream以及基本工作原理？" class="headerlink" title="11. DStream以及基本工作原理？"></a><strong>11. DStream以及基本工作原理？</strong></h4><p>Dstream是一个抽象概念，代表一个持续不断的数据源，可由Kafka，flume等主动生成，也可由map，reduce等算子被动生成；<br>Dstream内部不断产生RDD，RDD为一个batch，每个RDD中包含一个时间段的数据；</p>
+<hr>
+<h4 id="12-spark有哪些组件？"><a href="#12-spark有哪些组件？" class="headerlink" title="12. spark有哪些组件？"></a><strong>12. spark有哪些组件？</strong></h4><p>Master管理集群；<br>worker计算节点；<br>Driver运行main函数；<br>Spark Context管理Spark生命周期，Client用户提交程序</p>
+<hr>
+<h4 id="13-spark工作机制？"><a href="#13-spark工作机制？" class="headerlink" title="13. spark工作机制？"></a><strong>13. spark工作机制？</strong></h4><p>用户Client端提交程序，Driver运行程序main方法，生成Spark Context上下文；生成dag图，根据rdd间依赖关系划分task，将task提交到executor中执行；</p>
+<hr>
+<h4 id="14-Spark工作的一个流程？"><a href="#14-Spark工作的一个流程？" class="headerlink" title="14. Spark工作的一个流程？"></a><strong>14. Spark工作的一个流程？</strong></h4><p><img src="https://upload-images.jianshu.io/upload_images/16969231-010aecdb7d218be6.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/webp" alt="spark工作流程图"></p>
+<ul>
+<li>构建Spark Application的运行环境（启动SparkContext），SparkContext向资源管理器（可以是Standalone、Mesos或YARN）注册并申请运行Executor资源；</li>
+<li>资源管理器分配Executor资源并启动Executor，Executor运行情况将随着心跳发送到资源管理器上；</li>
+<li>SparkContext构建成DAG图，将DAG图分解成Stage，并把Taskset发送给Task Scheduler。Executor向SparkContext申请Task，Task Scheduler将Task发放给Executor运行同时SparkContext将应用程序代码发放给Executor。</li>
+<li>Task在Executor上运行，运行完毕释放所有资源。</li>
+</ul>
+<p>*<strong>参考链接</strong> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/01599e28090d">Spark 工作流程图</a>*</p>
+<hr>
+<h4 id="15-spark核心编程原理？"><a href="#15-spark核心编程原理？" class="headerlink" title="15. spark核心编程原理？"></a><strong>15. spark核心编程原理？</strong></h4><ul>
+<li>定义初始RDD来源，可以为本地文件，HDFS或者输入流；</li>
+<li>对RDD进行计算，通过算子转换等操作</li>
+<li>循环往复程，第一个计算完了以后，数据可能就会到了新的一批节点上，也就是变成一个新的RDD。然后再次反复，针对新的RDD定义计算操作</li>
+<li>获得最终数据保存数据</li>
+</ul>
+<p>*<strong>参考链接</strong> <a target="_blank" rel="noopener" href="https://blog.csdn.net/bbaiggey/article/details/51243061">Spark核心编程原理</a>*</p>
+<hr>
+<h4 id="16-spark基本工作原理？"><a href="#16-spark基本工作原理？" class="headerlink" title="16. spark基本工作原理？"></a><strong>16. spark基本工作原理？</strong></h4><p>首先在本地客户端(client)编写spark程序，然后将程序打成jar包，在某台能够连接到spark集群的机器上提交spark程序，spark程序会被提交到spark集群上运行。</p>
+<hr>
+<h4 id="17-spark性能优化有哪些？"><a href="#17-spark性能优化有哪些？" class="headerlink" title="17. spark性能优化有哪些？"></a><strong>17. spark性能优化有哪些？</strong></h4><p>分配更多资源；<br>调整并行度；<br>重构RDD架构以及RDD持久化；<br>广播大变量；<br>使用Kryo序列化；<br>使用fastutil优化数据格式；<br>调节数据本地化等待时长；</p>
+<p><strong><em>参考链接** <a target="_blank" rel="noopener" href="https://mubu.com/doc/iK9RFqMfd0">Spark性能调优</a></em> **密码：ibean.top，如果分享关闭请留言</strong></p>
+<hr>
+<h4 id="18-updateStateByKey详解？"><a href="#18-updateStateByKey详解？" class="headerlink" title="18. updateStateByKey详解？"></a><strong>18. updateStateByKey详解？</strong></h4><ul>
+<li>大数量updateBykey不适合，可以采用redis</li>
+<li>key超时，如何清空，来节约内存<br> 由于已存在状态的key，无论是否在新批次里有数据，都会调用updateFunc。<br> 返回None就可以清空超时key</li>
+<li>初始状态<br> 对于状态的算子一定要开启checkpoint，实际就是指定checkpoint目录<br> checkpoint频率：5-10个滑动窗口</li>
+</ul>
+<p>*<strong>参考链接</strong><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/jQIBvKnNSqRJIAF6Eqcdtg">sparkstreaming状态管理upstatebykey</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/AGdTlglZss7AEtajdsUk6w">sparkstreaming状态管理外部存储篇</a>*</p>
+<hr>
+<h4 id="19-宽依赖和窄依赖？"><a href="#19-宽依赖和窄依赖？" class="headerlink" title="19. 宽依赖和窄依赖？"></a><strong>19. 宽依赖和窄依赖？</strong></h4><ul>
+<li>窄依赖就是指父RDD的每个分区只被一个子RDD分区使用<br>  <img src="https://upload-images.jianshu.io/upload_images/3958688-04c7a31cd515ed86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/284/format/webp" alt="窄依赖"></li>
+<li>宽依赖就是指父RDD的每个分区都有可能被多个子RDD分区使用<br>  <img src="https://upload-images.jianshu.io/upload_images/3958688-cf9c359c9fde70c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/187/format/webp" alt="宽依赖"></li>
+</ul>
+<p>*<strong>参考链接</strong> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5c2301dfa360">Spark宽依赖与窄依赖</a>*</p>
+<hr>
+<h4 id="20-spark-streaming中有状态转化操作？"><a href="#20-spark-streaming中有状态转化操作？" class="headerlink" title="20. spark streaming中有状态转化操作？"></a><strong>20. spark streaming中有状态转化操作？</strong></h4><p><strong>有状态转化：</strong> 依赖之前的批次数据或者中间结果来计算当前批次的数据，包括<strong>updateStatebyKey()和window()</strong></p>
+<p>*<strong>参考链接</strong> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/031dbd1fa2a7">SparkStreaming入门教程(四)有状态和无状态的转化操作</a>*</p>
+<hr>
+<h4 id="21-spark常用的计算框架？"><a href="#21-spark常用的计算框架？" class="headerlink" title="21. spark常用的计算框架？"></a><strong>21. spark常用的计算框架？</strong></h4><p>Spark Core用于离线计算，Spark SQL用于交互式查询，Spark Streaming用于实时流式计算，Spark MLlib用于机器学习，Spark GraphX用于图计算。<br>Spark主要用于大数据的计算，而hadoop主要用于大数据的存储(比如hdfs、hive和hbase等)，以及资源调度yarn。Spark+hadoop的组合是未来大数据领域的热门组合</p>
+<hr>
+<h4 id="22-spark整体架构？"><a href="#22-spark整体架构？" class="headerlink" title="22. spark整体架构？"></a><strong><del>22. spark整体架构？</del></strong></h4><hr>
+<h4 id="23-Spark的特点是什么？"><a href="#23-Spark的特点是什么？" class="headerlink" title="23. Spark的特点是什么？"></a><strong>23. Spark的特点是什么？</strong></h4><p>(1)速度快：Spark基于内存进行计算（当然也有部分计算基于磁盘，比如shuffle）。<br>(2)容易上手开发：Spark的基于RDD的计算模型，比Hadoop的基于Map-Reduce的计算模型要更加易于理解，更加易于上手开发，实现各种复杂功能，比如二次排序、topn等复杂操作时，更加便捷。<br>(3)超强的通用性：Spark提供了Spark RDD、Spark SQL、Spark Streaming、Spark MLlib、Spark GraphX等技术组件，可以一站式地完成大数据领域的离线批处理、交互式查询、流式计算、机器学习、图计算等常见的任务。<br>(4)集成Hadoop：Spark并不是要成为一个大数据领域的“独裁者”，一个人霸占大数据领域所有的“地盘”，而是与Hadoop进行了高度的集成，两者可以完美的配合使用。Hadoop的HDFS、Hive、HBase负责存储，YARN负责资源调度；Spark复杂大数据计算。实际上，Hadoop+Spark的组合，是一种“double win”的组合。<br>(5)极高的活跃度：Spark目前是Apache基金会的顶级项目，全世界有大量的优秀工程师是Spark的committer。并且世界上很多顶级的IT公司都在大规模地使用Spark。</p>
+<hr>
+<h4 id="24-搭建spark集群步骤？"><a href="#24-搭建spark集群步骤？" class="headerlink" title="24. 搭建spark集群步骤？"></a><strong>24. 搭建spark集群步骤？</strong></h4><ul>
+<li>安装spark包</li>
+<li>修改 spark-env. sh</li>
+<li>修改slaves文件</li>
+<li>分发spark包，安装spark集群</li>
+<li>启动spark集群</li>
+<li>查看集群状态，spark集群的默认web管理页面端口为8080，url为<a target="_blank" rel="noopener" href="http://master:8080/">http://master:8080</a></li>
+</ul>
+<hr>
+<h4 id="25-Spark的三种提交模式是什么？"><a href="#25-Spark的三种提交模式是什么？" class="headerlink" title="25. Spark的三种提交模式是什么？"></a><strong>25. Spark的三种提交模式是什么？</strong></h4><ul>
+<li>Spark内核架构，即standalone模式，基于Spark自己的Master-Worker集群；</li>
+<li>基于Yarn的yarn-cluster模式；</li>
+<li>基于Yarn的yarn-client模式。</li>
+</ul>
+<p>如果要切换到第二种和第三种模式，将之前提交spark应用程序的spark-submit脚本，加上–master参数，设置为yarn-cluster，或yarn-client即可。如果没设置就是standalone模式</p>
+<hr>
+<h4 id="26-spark内核架构原理？"><a href="#26-spark内核架构原理？" class="headerlink" title="26. spark内核架构原理？"></a><strong><del>26. spark内核架构原理？</del></strong></h4><hr>
+<h4 id="27-Spark-yarn-cluster架构？"><a href="#27-Spark-yarn-cluster架构？" class="headerlink" title="27. Spark yarn-cluster架构？"></a><strong>27. Spark yarn-cluster架构？</strong></h4><p>Yarn-cluster用于生产环境，优点在于driver运行在NM，没有网卡流量激增的问题。缺点在于调试不方便，本地用spark-submit提交后，看不到log，只能通过yarm application-logs application_id这种命令来查看，很麻烦。<br>(1)将spark程序通过spark-submit命令提交，会发送请求到RM(相当于Master)，请求启动AM；<br>(2)在yarn集群上，RM会分配一个container，在某个NM上启动AM；<br>(3)在NM上会启动AM(相当于Driver)，AM会找RM请求container，启动executor；<br>(4)RM会分配一批container用于启动executor；<br>(5)AM会连接其他NM(相当于worker)，来启动executor；<br>(6)executor启动后，会反向注册到AM。</p>
+<p>*<strong>参考链接</strong> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61902619">Spark on Yarn两种模式剖析</a>*</p>
+<hr>
+<h4 id="28-Spark-yarn-client架构？"><a href="#28-Spark-yarn-client架构？" class="headerlink" title="28. Spark yarn-client架构？"></a><strong>28. Spark yarn-client架构？</strong></h4><p>Yarn-client用于测试，因为driver运行在本地客户端，负责调度application，会与yarn集群产生大量的网络通信，从而导致网卡流量激增，可能会被公司的SA警告。好处在于，直接执行时本地可以看到所有的log，方便调试。<br>(1)将spark程序通过spark-submit命令提交，会发送请求到RM，请求启动AM；<br>(2)在yarn集群上，RM会分配一个container在某个NM上启动application；<br>(3)在NM上会启动application master，但是这里的AM其实只是一个ExecutorLauncher，功能很有限，只会去申请资源。AM会找RM申请container，启动executor；<br>(4)RM会分配一批container用于启动executor；<br>(5)AM会连接其他NM(相当于worker)，用container的资源来启动executor；<br>(6)executor启动后，会反向注册到本地的Driver进程。通过本地的Driver去执行DAGsheduler和Taskscheduler等资源调度。<br>和Spark yarn-cluster的区别在于，cluster模式会在某一个NM上启动AM作为Driver。</p>
+<p>*<strong>参考链接</strong> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61902619">Spark on Yarn两种模式剖析</a>*</p>
+<hr>
+<h4 id="29-SparkContext初始化原理？"><a href="#29-SparkContext初始化原理？" class="headerlink" title="29. SparkContext初始化原理？"></a><strong>29. SparkContext初始化原理？</strong></h4><ul>
+<li>TaskScheduler如何注册application，executor如何反向注册到TaskScheduler；</li>
+<li>DAGScheduler；</li>
+<li>SparkUI。</li>
+</ul>
+<p>*<strong>参考链接</strong> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8e73d08219bd">sparkContext原理剖析</a>*</p>
+<hr>
+<h4 id="30-Spark主备切换机制原理剖析？"><a href="#30-Spark主备切换机制原理剖析？" class="headerlink" title="30. Spark主备切换机制原理剖析？"></a><strong>30. Spark主备切换机制原理剖析？</strong></h4><ul>
+<li>spark master的主备切换可以基于两种机制，一种是基于文件系统的，一种是基于zookeeper的<ul>
+<li>基于文件系统的主备切换机制在active master挂掉之后，需要我们手动去切换到standby master；</li>
+<li>而基于zookeeper的主备切换机制在active master挂掉之后，可以实现自动的切换到standby master。</li>
+</ul>
+</li>
+<li>这里要说的master主备切换机制就是，在在active master挂掉之后切换到standby master，master会做哪些操作。</li>
+</ul>
+<p>*<strong>参考链接</strong><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4e1b2d986883">spark主备切换机制剖析</a>、<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c5f51b68a639">spark的主备切换极致原理剖析</a>*</p>
+<hr>
+<h4 id="31-spark支持故障恢复的方式？"><a href="#31-spark支持故障恢复的方式？" class="headerlink" title="31. spark支持故障恢复的方式？"></a><strong>31. spark支持故障恢复的方式？</strong></h4><ul>
+<li>通过血缘关系lineage，当发生故障的时候通过血缘关系回溯，再执行一遍来一层一层恢复数据；</li>
+<li>通过checkpoint()机制，将数据存储到持久化存储中来恢复数据。</li>
+</ul>
+<hr>
+<h4 id="32-spark解决了hadoop的哪些问题？"><a href="#32-spark解决了hadoop的哪些问题？" class="headerlink" title="32. spark解决了hadoop的哪些问题？"></a><strong>32. spark解决了hadoop的哪些问题？</strong></h4><ol>
+<li><ul>
+<li>MR:抽象层次低，需要使用手工代码来完成程序编写，使用上难以上手；</li>
+<li>Spark:Spark采用RDD计算模型，简单容易上手。</li>
+</ul>
+</li>
+<li><ul>
+<li>MR:只提供map和reduce两个操作，表达能力欠缺；</li>
+<li>Spark:Spark采用更加丰富的算子模型，包括map、flatmap、groupbykey、reducebykey等；</li>
+</ul>
+</li>
+<li><ul>
+<li>MR:一个job只能包含map和reduce两个阶段，复杂的任务需要包含很多个job，这些job之间的管理以来需要开发者自己进行管理；</li>
+<li>Spark:Spark中一个job可以包含多个转换操作，在调度时可以生成多个stage，而且如果多个map操作的分区不变，是可以放在同一个task里面去执行；</li>
+</ul>
+</li>
+<li><ul>
+<li>MR:中间结果存放在hdfs中；</li>
+<li>Spark:Spark的中间结果一般存在内存中，只有当内存不够了，才会存入本地磁盘，而不是hdfs；</li>
+</ul>
+</li>
+<li><ul>
+<li>MR:只有等到所有的map task执行完毕后才能执行reduce task；</li>
+<li>Spark:Spark中分区相同的转换构成流水线在一个task中执行，分区不同的需要进行shuffle操作，被划分成不同的stage需要等待前面的stage执行完才能执行。</li>
+</ul>
+</li>
+<li><ul>
+<li>MR:只适合batch批处理，时延高，对于交互式处理和实时处理支持不够；</li>
+<li>Spark:Spark streaming可以将流拆成时间间隔的batch进行处理，实时计算。</li>
+</ul>
+</li>
+<li><ul>
+<li>MR:对于迭代式计算处理较差；</li>
+<li>Spark:Spark将中间数据存放在内存中，提高迭代式计算性能。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="33-数据倾斜的产生和解决办法？"><a href="#33-数据倾斜的产生和解决办法？" class="headerlink" title="33. 数据倾斜的产生和解决办法？"></a><strong>33. 数据倾斜的产生和解决办法？</strong></h4><p><strong><em>参考链接** <a target="_blank" rel="noopener" href="https://mubu.com/doc/iK9RFqMfd0">Spark性能调优</a> 【六、数据倾斜解决方案】</em> **密码：ibean.top，如果分享关闭请留言</strong></p>
+<hr>
+<h4 id="34-spark-实现高可用性：High-Availability？"><a href="#34-spark-实现高可用性：High-Availability？" class="headerlink" title="34. spark 实现高可用性：High Availability？"></a><strong>34. spark 实现高可用性：High Availability？</strong></h4><ul>
+<li>基于文件系统的单点恢复(Single-Node Recovery with Local File System)</li>
+<li>基于zookeeper的Standby Masters(Standby Masters with ZooKeeper)</li>
+</ul>
+<p>*<strong>参考链接</strong> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/byrhuangqiang/p/3937654.html">Spark:Master High Availability（HA）高可用配置的2种实现</a>*</p>
+<hr>
+<h4 id="35-spark实际工作中，是怎么来根据任务量，判定需要多少资源的？"><a href="#35-spark实际工作中，是怎么来根据任务量，判定需要多少资源的？" class="headerlink" title="35. spark实际工作中，是怎么来根据任务量，判定需要多少资源的？"></a><strong>35. spark实际工作中，是怎么来根据任务量，判定需要多少资源的？</strong></h4><hr>
+<h4 id="36-spark中怎么解决内存泄漏问题？"><a href="#36-spark中怎么解决内存泄漏问题？" class="headerlink" title="36. spark中怎么解决内存泄漏问题？"></a><strong>36. spark中怎么解决内存泄漏问题？</strong></h4><ol>
+<li>driver端<ul>
+<li>可以增大driver的内存参数：<code>spark.driver.memory</code> (default 1g)</li>
+<li>DAGScheduler和Spark Context运行在Driver端，rdd的stage切分由driver完成；当程序算子过多可能会切分出大量stage，占用driver内存</li>
+</ul>
+</li>
+<li>map过程产生大量对象<ul>
+<li>单个map产生大量对象导致； </li>
+<li>不增加内存的情况下，减少每个task的大小；可以在会产生大量对象的map操作之前调用repartition方法，分区成更小的块传入map</li>
+</ul>
+</li>
+<li>数据不平衡导致内存溢出，解决方案与2相似，采用repartition的方式；</li>
+<li>shuffle后内存溢出</li>
+</ol>
+<p>*<strong>参考链接</strong> <a target="_blank" rel="noopener" href="https://blog.csdn.net/Sunshine_2211468152/article/details/83050337">spark 如何防止内存溢出</a>*</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">IBean</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.ibean.top/posts/202002081745903.html">https://www.ibean.top/posts/202002081745903.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.ibean.top" target="_blank">阿豆的闲暇时光</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/BigData/">BigData</a><a class="post-meta__tags" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a><a class="post-meta__tags" href="/tags/Spark/">Spark</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/202002081750dbfae0.html"><img class="prev-cover" src="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">大数据-Hadoop篇-面试题总结</div></div></a></div><div class="next-post pull-right"><a href="/posts/202001081052460.html"><img class="next-cover" src="https://cdn.ibean.top/blog/portrait-of-dolphin-in-ocean.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Centos7离线安装Vim</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/202002081750dbfae0.html" title="大数据-Hadoop篇-面试题总结"><img class="cover" src="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-02-08</div><div class="title">大数据-Hadoop篇-面试题总结</div></div></a></div><div><a href="/posts/202002081758315.html" title="大数据-Hive篇-面试题总结"><img class="cover" src="https://cdn.ibean.top/blog/landscape-water-lake-sea.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-02-08</div><div class="title">大数据-Hive篇-面试题总结</div></div></a></div><div><a href="/posts/20190108222625.html" title="Hive1.2.2环境搭建（MariaDB版）【填坑】"><img class="cover" src="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-01-08</div><div class="title">Hive1.2.2环境搭建（MariaDB版）【填坑】</div></div></a></div><div><a href="/posts/20190308144561.html" title="初入Storm开发遇到的问题"><img class="cover" src="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-08</div><div class="title">初入Storm开发遇到的问题</div></div></a></div><div><a href="/posts/201812241264906.html" title="Spark2.0.2+Scala2.11.8环境搭建"><img class="cover" src="https://cdn.ibean.top/blog/picture/1612943537190.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-12-24</div><div class="title">Spark2.0.2+Scala2.11.8环境搭建</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.ibean.top/uplaod/9c70c64b4ec80218f5cbd175b5277fcf.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">IBean</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">36</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/IBeanCN"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/IBeanCN" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:IBeanCN@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Spark%E7%9A%84Shuffle%E5%8E%9F%E7%90%86%E5%8F%8A%E8%B0%83%E4%BC%98%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">1. Spark的Shuffle原理及调优？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-hadoop%E5%92%8Cspark%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">2. hadoop和spark使用场景？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-spark%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%AE%95%E6%9C%BA%E8%BF%85%E9%80%9F%E6%81%A2%E5%A4%8D"><span class="toc-number">3.</span> <span class="toc-text">3. spark如何保证宕机迅速恢复?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-hadoop%E5%92%8Cspark%E7%9A%84%E7%9B%B8%E5%90%8C%E7%82%B9%E5%92%8C%E4%B8%8D%E5%90%8C%E7%82%B9%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">4. hadoop和spark的相同点和不同点？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-RDD%E6%8C%81%E4%B9%85%E5%8C%96%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">5. RDD持久化原理？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-checkpoint%E6%A3%80%E6%9F%A5%E7%82%B9%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">6. checkpoint检查点机制？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-checkpoint%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">7. checkpoint和持久化机制的区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-Spark-Streaming%E5%92%8CStorm%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">8.</span> <span class="toc-text">8. Spark Streaming和Storm有何区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-RDD%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">9. RDD机制？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-Spark-streaming%E4%BB%A5%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">10.</span> <span class="toc-text">10. Spark streaming以及基本工作原理？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-DStream%E4%BB%A5%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">11. DStream以及基本工作原理？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-spark%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BB%84%E4%BB%B6%EF%BC%9F"><span class="toc-number">12.</span> <span class="toc-text">12. spark有哪些组件？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-spark%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-number">13.</span> <span class="toc-text">13. spark工作机制？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-Spark%E5%B7%A5%E4%BD%9C%E7%9A%84%E4%B8%80%E4%B8%AA%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="toc-number">14.</span> <span class="toc-text">14. Spark工作的一个流程？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-spark%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">15.</span> <span class="toc-text">15. spark核心编程原理？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-spark%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">16.</span> <span class="toc-text">16. spark基本工作原理？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">17.</span> <span class="toc-text">17. spark性能优化有哪些？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-updateStateByKey%E8%AF%A6%E8%A7%A3%EF%BC%9F"><span class="toc-number">18.</span> <span class="toc-text">18. updateStateByKey详解？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-%E5%AE%BD%E4%BE%9D%E8%B5%96%E5%92%8C%E7%AA%84%E4%BE%9D%E8%B5%96%EF%BC%9F"><span class="toc-number">19.</span> <span class="toc-text">19. 宽依赖和窄依赖？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20-spark-streaming%E4%B8%AD%E6%9C%89%E7%8A%B6%E6%80%81%E8%BD%AC%E5%8C%96%E6%93%8D%E4%BD%9C%EF%BC%9F"><span class="toc-number">20.</span> <span class="toc-text">20. spark streaming中有状态转化操作？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#21-spark%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6%EF%BC%9F"><span class="toc-number">21.</span> <span class="toc-text">21. spark常用的计算框架？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#22-spark%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%EF%BC%9F"><span class="toc-number">22.</span> <span class="toc-text">22. spark整体架构？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#23-Spark%E7%9A%84%E7%89%B9%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">23.</span> <span class="toc-text">23. Spark的特点是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#24-%E6%90%AD%E5%BB%BAspark%E9%9B%86%E7%BE%A4%E6%AD%A5%E9%AA%A4%EF%BC%9F"><span class="toc-number">24.</span> <span class="toc-text">24. 搭建spark集群步骤？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#25-Spark%E7%9A%84%E4%B8%89%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%A8%A1%E5%BC%8F%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">25.</span> <span class="toc-text">25. Spark的三种提交模式是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#26-spark%E5%86%85%E6%A0%B8%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">26.</span> <span class="toc-text">26. spark内核架构原理？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#27-Spark-yarn-cluster%E6%9E%B6%E6%9E%84%EF%BC%9F"><span class="toc-number">27.</span> <span class="toc-text">27. Spark yarn-cluster架构？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#28-Spark-yarn-client%E6%9E%B6%E6%9E%84%EF%BC%9F"><span class="toc-number">28.</span> <span class="toc-text">28. Spark yarn-client架构？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#29-SparkContext%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">29.</span> <span class="toc-text">29. SparkContext初始化原理？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#30-Spark%E4%B8%BB%E5%A4%87%E5%88%87%E6%8D%A2%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90%EF%BC%9F"><span class="toc-number">30.</span> <span class="toc-text">30. Spark主备切换机制原理剖析？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#31-spark%E6%94%AF%E6%8C%81%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="toc-number">31.</span> <span class="toc-text">31. spark支持故障恢复的方式？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#32-spark%E8%A7%A3%E5%86%B3%E4%BA%86hadoop%E7%9A%84%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-number">32.</span> <span class="toc-text">32. spark解决了hadoop的哪些问题？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#33-%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E7%9A%84%E4%BA%A7%E7%94%9F%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%9F"><span class="toc-number">33.</span> <span class="toc-text">33. 数据倾斜的产生和解决办法？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#34-spark-%E5%AE%9E%E7%8E%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7%EF%BC%9AHigh-Availability%EF%BC%9F"><span class="toc-number">34.</span> <span class="toc-text">34. spark 实现高可用性：High Availability？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#35-spark%E5%AE%9E%E9%99%85%E5%B7%A5%E4%BD%9C%E4%B8%AD%EF%BC%8C%E6%98%AF%E6%80%8E%E4%B9%88%E6%9D%A5%E6%A0%B9%E6%8D%AE%E4%BB%BB%E5%8A%A1%E9%87%8F%EF%BC%8C%E5%88%A4%E5%AE%9A%E9%9C%80%E8%A6%81%E5%A4%9A%E5%B0%91%E8%B5%84%E6%BA%90%E7%9A%84%EF%BC%9F"><span class="toc-number">35.</span> <span class="toc-text">35. spark实际工作中，是怎么来根据任务量，判定需要多少资源的？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#36-spark%E4%B8%AD%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-number">36.</span> <span class="toc-text">36. spark中怎么解决内存泄漏问题？</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/20220624000.html" title="无题"><img src="https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/posts/20220624000.html" title="无题">无题</a><time datetime="2022-06-23T16:00:00.000Z" title="发表于 2022-06-24 00:00:00">2022-06-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/202202241542498140.html" title="mvnd确实提升了打包速度"><img src="https://cdn.ibean.top/blog/portrait-of-dolphin-in-ocean.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mvnd确实提升了打包速度"/></a><div class="content"><a class="title" href="/posts/202202241542498140.html" title="mvnd确实提升了打包速度">mvnd确实提升了打包速度</a><time datetime="2022-02-24T07:58:54.000Z" title="发表于 2022-02-24 15:58:54">2022-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/20220114154037bbf2.html" title="二倍均值法-抢红包案例"><img src="https://cdn.ibean.top/blog/landscape-water-lake-sea.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二倍均值法-抢红包案例"/></a><div class="content"><a class="title" href="/posts/20220114154037bbf2.html" title="二倍均值法-抢红包案例">二倍均值法-抢红包案例</a><time datetime="2022-01-14T07:10:06.000Z" title="发表于 2022-01-14 15:10:06">2022-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2021030111cc3e20e9.html" title="MongoDB初见-基础使用"><img src="https://cdn.ibean.top/blog/picture/1612943537190.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MongoDB初见-基础使用"/></a><div class="content"><a class="title" href="/posts/2021030111cc3e20e9.html" title="MongoDB初见-基础使用">MongoDB初见-基础使用</a><time datetime="2021-03-01T03:20:42.000Z" title="发表于 2021-03-01 11:20:42">2021-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2021022308372e50b0.html" title="MongoDB初见"><img src="https://cdn.ibean.top/blog/portrait-of-dolphin-in-ocean.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MongoDB初见"/></a><div class="content"><a class="title" href="/posts/2021022308372e50b0.html" title="MongoDB初见">MongoDB初见</a><time datetime="2021-02-23T00:24:10.000Z" title="发表于 2021-02-23 08:24:10">2021-02-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.ibean.top/blog/one-world-trade-center-in-cloudy-sky.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By IBean</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" style="display:block !important;"><span>鲁ICP备20004070号-2</span></a> <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" style="display:block !important;"><img src="https://cdn.ibean.top/blog/%E5%8F%88%E6%8B%8D%E4%BA%91_logo5.png" style="height:70px;"/></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '3cf5e23d441d57d9d945',
+      clientSecret: '0dd8ea54ed7b23a60cc1f6bb9f177412c2fe5faf',
+      repo: 'IBeanCN',
+      owner: 'IBeanCN',
+      admin: ['IBeanCN'],
+      id: 'dec4c7cf1480b1622d202ddbe2291b51',
+      language: 'zh-CN',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
